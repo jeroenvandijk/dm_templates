@@ -1,0 +1,15 @@
+<h1><%%= translate_for "<%= singular_name %>.show.title" %></h1>
+
+<div id="<%= singular_name %>">
+<% for attribute in attributes -%>
+	<p>
+		<%= attribute.column.human_name %>
+		<%%=h @<%= singular_name %>.<%= attribute.name %> %>
+	</p>
+<% end -%>
+</div>
+<%%= link_to translate_for("<%= singular_name %>.show.link_to_edit"), <%= path_for(:edit) %> %>
+|
+<%%= link_to translate_for("<%= singular_name %>.show.link_to_destroy"), <%= path_for(:destroy) %>, :confirm => translate_for("<%= singular_name %>.show.destroy_confirmation"), :method => :delete %>
+|
+<%%= link_to translate_for("<%= singular_name %>.show.link_to_index"), <%= path_for(:index) %> %>
