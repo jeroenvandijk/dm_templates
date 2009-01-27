@@ -1,0 +1,22 @@
+nl:
+  actionview:
+    actions:
+      default:
+        index:
+          title: Lijst {{models}}
+          link_to_new: Nieuw {{model}}
+        new: 
+          title: Aanmaken {{model}}
+          link_to_index: Terug naar {{models}}
+          save_button_name: Opslaan van nieuw {{model}}
+        edit:
+          title: Wijzigen {{model}}
+          link_to_show: Tonen {{model}}
+          link_to_index: Terug naar {{models}}
+          save_button_name: Opslaan van wijzigen op {{model}}
+        show:
+          title: test {{model}}
+          link_to_edit: Wijzigen {{model}}
+          link_to_destroy: Verwijderen van {{model}}
+          destroy_confirmation: Weet je zeker dat je {{model}} wilt verwijderen?
+          link_to_index: Terug naar {{models}}
