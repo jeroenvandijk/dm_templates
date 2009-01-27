@@ -1,0 +1,13 @@
+<% 1.upto(number_of_entities) do |id| -%>
+<%= "#{file_name}_#{id}" %>:
+<% for attribute in attributes -%>
+  <%= attribute.name %>: <%= attribute.default %>
+<% end -%>
+<% collection_association_names.each do |child| -%>
+  <%= "#{child}: " + (id..number_of_entities).map{|x| "#{child.singularize}_#{x}" }.join(", ")%>
+<% end -%>
+<% belongs_to_association_names.each do |parent| -%>
+  <%= "#{parent}: #{parent.singularize}_#{id}" %>
+<% end -%>
+
+<% end -%>

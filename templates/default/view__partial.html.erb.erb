@@ -1,0 +1,13 @@
+<div id="<%= singular_name %>">
+<% for attribute in attributes -%>
+	<p><%= attribute.column.human_name %>
+		<%%= h <%= singular_name %>.<%= attribute.name %> %>
+	</p>
+<% end -%>
+</div>
+
+<%%= link_to translate_for("<%= singular_name %>.show.link_to_edit"), edit_<%= namespace_prefix + singular_name %>_path(<%= singular_name %>) %>
+|
+<%%= link_to translate_for("<%= singular_name %>.show.link_to_destroy"), <%= path_for(:destroy, :partial => true) %>, :confirm => translate_for("<%= singular_name %>.show.destroy_confirmation"), :method => :delete %>
+|
+<%%= link_to translate_for("<%= singular_name %>.show.link_to_index"), <%= path_for(:index) %> %>
