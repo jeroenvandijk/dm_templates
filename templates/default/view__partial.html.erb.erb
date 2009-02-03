@@ -6,7 +6,7 @@
 <% end -%>
 </div>
 
-<%%= link_to translate_for("<%= singular_name %>.show.link_to_edit"), edit_<%= namespace_prefix + singular_name %>_path(<%= singular_name %>) %>
+<%%= link_to translate_for("<%= singular_name %>.show.link_to_edit"), <%= path_for(:edit, :partial => true) %> %>
 |
 <%%= link_to translate_for("<%= singular_name %>.show.link_to_destroy"), <%= path_for(:destroy, :partial => true) %>, :confirm => translate_for("<%= singular_name %>.show.destroy_confirmation"), :method => :delete %>
 |

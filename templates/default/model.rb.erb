@@ -1,8 +1,8 @@
 class <%= class_name %> < ActiveRecord::Base
 	## ASSOCIATIONS
-<% supported_associations.each do |assoc_type| -%>
-<% eval("#{assoc_type}_associations").each do |assoc_name, properties| -%>
-	<%= association_model_string(assoc_name, properties) %>
+<% supported_associations.each do |type| -%>
+<% eval("#{type}_associations_with_options").each do |name_with_options| -%>
+	<%= type + " " + name_with_options %>
 <% end %>
 <% end %>
 	## RESTRICTIONS
@@ -26,16 +26,16 @@ class <%= class_name %> < ActiveRecord::Base
 		w.validates_length_of <%= attr %>
 <% end -%>
 	end
-<% end %>
+<% end -%>
 	
 <% boolean_attribute_symbols.each do |attr| -%>
 	validates_inclusion_of <%= attr %>, in => [true, false] %>
-<% end %>
+<% end -%>
 
 	## ASSOCIATED VALIDATIONS
-	<% unless belongs_to_association_names.empty? %>
+<% unless belongs_to_association_names.empty? -%>
 	<%# validates_associated <%= association_names.join(",\n" + "\t" * 12) %>
-	<% end %>
+<% end -%>
 
 	## FORMAT VALIDATIONS
 	with_options :allow_nil => true, :allow_blank => true do |w|
@@ -45,11 +45,11 @@ class <%= class_name %> < ActiveRecord::Base
 	## VIRTUAL ATTRIBUTES
 	
 	## NORMAL METHODS
-		def self.find_by_params(params = {})
-			scope = scoped({})
-	<% all_field_names.each do |field| -%>
-			scope = scope.scoped :conditions => { <%= field %> => params[<%= field %>] } if params[<%= field %>]
-	<% end %>
-			scope.find(:all) ## TODO replace this with a proper search generic find code here
-		end
+	def self.find_by_params(params = {})
+		scope = scoped({})
+<% attribute_symbols.each do |field| -%>
+		scope = scope.scoped :conditions => { <%= field %> => params[<%= field %>] } if params[<%= field %>]
+<% end -%>
+		scope.find(:all) ## TODO replace this with a proper search generic find code here
+	end
 end
