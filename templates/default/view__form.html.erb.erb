@@ -1,7 +1,7 @@
 <%%= error_messages_for :<%= singular_name %> %>
 
 <%% form_for <%= form_for_args %> do |f| %>
-<%- for attribute in attributes -%>
+<%- for attribute in attributes_for__form -%>
 	<p>
 		<%%= f.label :<%= attribute.name %> %>
 		<%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>

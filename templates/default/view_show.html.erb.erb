@@ -1,10 +1,10 @@
 <h1><%%= translate_for "<%= singular_name %>.show.title" %></h1>
 
 <div id="<%= singular_name %>">
-<% for attribute in attributes -%>
+<% for attribute in attributes_for_show -%>
 	<p>
 		<%= attribute.column.human_name %>
-		<%%=h @<%= singular_name %>.<%= attribute.name %> %>
+		<%%=h <%= attribute.presentation("@#{singular_name}", :show) %> %>
 	</p>
 <% end -%>
 </div>

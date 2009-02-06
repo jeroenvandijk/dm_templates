@@ -1,0 +1,13 @@
+formats:
+  email: string
+  
+examples:
+  email: jeroen@noxa.nl
+
+presentations:
+  default:
+    email: mail_to('{{attribute}}')
+    name: link_to({{object}}.{{attribute}}, {{attribute}})
+  show:
+    name: "{{_self}}"
+    email: "{{_self}}" 
