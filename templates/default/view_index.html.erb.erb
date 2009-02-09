@@ -2,4 +2,4 @@
 
 <%%= render :partial => '<%= singular_name %>', :collection => @<%= plural_name %> %>
 
-<%%= link_to translate_for("<%= singular_name %>.index.link_to_new"), <%= path_for(:new) %> %>
+<%%= link_to translate_for("<%= singular_name %>.index.link_to_new"), <%= path_for(model_instance, :new) %> %>

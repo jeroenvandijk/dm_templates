@@ -1,13 +1,13 @@
 <div id="<%= singular_name %>">
 <% for attribute in attributes_for__partial -%>
 	<p><%= attribute.column.human_name %>
-		<%%=h <%= attribute.presentation(singular_name) %> %>
+		<%%=h <%= attribute.display(singular_name, :_partial) %> %>
 	</p>
 <% end -%>
 </div>
 
-<%%= link_to translate_for("<%= singular_name %>.show.link_to_edit"), <%= path_for(:edit, :partial => true) %> %>
+<%%= link_to translate_for("<%= singular_name %>.show.link_to_edit"), <%= path_for(model_instance, :edit, :partial => true) %> %>
 |
-<%%= link_to translate_for("<%= singular_name %>.show.link_to_destroy"), <%= path_for(:destroy, :partial => true) %>, :confirm => translate_for("<%= singular_name %>.show.destroy_confirmation"), :method => :delete %>
+<%%= link_to translate_for("<%= singular_name %>.show.link_to_destroy"), <%= path_for(model_instance, :destroy, :partial => true) %>, :confirm => translate_for("<%= singular_name %>.show.destroy_confirmation"), :method => :delete %>
 |
-<%%= link_to translate_for("<%= singular_name %>.show.link_to_index"), <%= path_for(:index) %> %>
+<%%= link_to translate_for("<%= singular_name %>.show.link_to_index"), <%= path_for(model_instance, :index) %> %>

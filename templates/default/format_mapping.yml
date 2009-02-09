@@ -1,13 +1,16 @@
-formats:
-  email: string
-  
-examples:
-  email: jeroen@noxa.nl
+email:
+  native_type: string
+  examples:
+    valid: jeroen@noxa.nl
+    invalid: jeroen_noxa.nl
+  display:
+    default: "mail_to('{{object}}.{{attribute_name}}')"
 
-presentations:
-  default:
-    email: mail_to('{{attribute}}')
-    name: link_to({{object}}.{{attribute}}, {{attribute}})
-  show:
-    name: "{{_self}}"
-    email: "{{_self}}" 
+name:
+  native_type: string
+  examples:
+    valid: jeroen
+    invalid: jeroen32
+  display:
+    default: "link_to(h({{object}}.{{attribute_name}}), {{object}})"
+    show: "{{object}}.{{attribute_name}}"
