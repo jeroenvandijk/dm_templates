@@ -1,7 +1,7 @@
 <div id="<%= singular_name %>">
 <% for attribute in attributes_for__partial -%>
 	<p><%= attribute.column.human_name %>
-		<%%=h <%= attribute.display(singular_name, :_partial) %> %>
+		<%%= <%= attribute.display(singular_name, :_partial) %> %>
 	</p>
 <% end -%>
 </div>
