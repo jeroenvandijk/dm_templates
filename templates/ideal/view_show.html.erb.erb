@@ -1,0 +1,21 @@
+<div id="show">
+  <%= model.page_title(:show) %>
+
+<div class="<%= singular_name %>">
+<% model.attributes_for(:show) do |attribute| %>
+	<div class="label"><%= attribute.display_name(:show) %></div>
+	<div class="field <%= attribute.format %>"><%= attribute.display(:show) %></div>
+
+<% end -%>
+
+<% model.associations_for(:show) do |association| -%>
+  <%= model.render_partial("@#{model.singular_name}.#{association}") %>
+<% end -%>
+</div>
+
+  <div class="link_to_edit"><%= model.link_to(:edit) %></div>
+  |
+  <div class="link_to_destroy"><%= model.link_to(:destroy) %></div>
+  |
+  <div class="link_to_index"><%= model.link_to(:index) %></div>
+</div>
