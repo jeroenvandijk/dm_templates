@@ -1,7 +1,7 @@
-<%= model.title %>
+<%= model.page_title(:edit) %>
 
-<% model.partial(:form) %>
+<%= model.render_form %>
 
-<% model.link_to(:show) %>
+<%= model.link_to(:show) %>
 |
-<% model.link_to(:index) %>
+<%= model.link_to(:index) %>

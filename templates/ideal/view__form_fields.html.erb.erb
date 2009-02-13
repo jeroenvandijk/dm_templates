@@ -1,5 +1,5 @@
 <%= model.error_messages %>
-<%- model.attributes_for(:mass_assignment) do |attribute| -%>
+<% model.attributes_for(:mass_assignment) do |attribute| -%>
 	<p>
 		<%= attribute.form_label %>
     <%= attribute.form_field %>
