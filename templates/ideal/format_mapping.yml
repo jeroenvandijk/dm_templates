@@ -14,3 +14,29 @@ name:
   display:
     default: "link_to(h({{object}}.{{attribute_name}}), {{object}})"
     show: "{{object}}.{{attribute_name}}"
+    
+url:
+  native_type: string
+  examples:
+    valid: http://www.google.com
+    invalid: www.google
+  display:
+    default: "link_to h({{object}}.{{attribute_name}})"
+
+html:
+  native_type: text
+  examples:
+    valid: <html>hello</html>
+    invalid: <html>hello
+  display:
+    default: "{{object}}.{{attribute_name}}"
+    
+file_column:
+  native_type: string
+  examples:
+    valid: test.txt
+    invalid: test
+  display:
+    default: "{{object}}.{{attribute_name}}"
+  form_field: 'file_column_field "{{object}}", "{{attribute_name}}"'
+    
