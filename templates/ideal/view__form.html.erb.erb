@@ -1,6 +1,8 @@
-<% model.form_for do %>
+<%= model.form_for %>
+  
   <%= model.render_fields_for(model.singular_name) %>
-	<p>
+	
+	<div id="save_button">
 		<%= model.save_form_button %>
-	</p>
-<% end %>
+	</div>
+<%% end %>

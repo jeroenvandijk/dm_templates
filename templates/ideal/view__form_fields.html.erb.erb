@@ -1,10 +1,17 @@
-<%= model.error_messages %>
-<% model.attributes_for(:mass_assignment) do |attribute| -%>
-	<p>
-		<%= attribute.form_label %>
+<div class="form_fields" id="fields_for_<%= model.singular_name %>">
+
+  <%= model.error_messages %>
+
+<% model.attributes_for(:form).each do |attribute| -%>
+  <div class="form_field">
+	  <%= attribute.form_label %>
     <%= attribute.form_field %>
-	</p>
+  </div>
+  
 <% end -%>
-<%- model.associations_for(:form) do association -%>
-  <%- model.render_fields_for association %>
+<%- model.associations_for(:form).each do |association| -%>
+  <div id="fields_for_<%= association.name %>">
+    <%= model.render_fields_for association.name %>
+  </div>
 <% end -%>
+</div>
