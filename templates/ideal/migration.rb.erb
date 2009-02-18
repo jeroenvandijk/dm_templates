@@ -1,17 +1,20 @@
 class <%= migration_name %> < ActiveRecord::Migration
   def self.up
-    create_table :<%= table_name %>, :force => true do |t|
-<% unless belongs_to_association_symbols.empty? -%>
-			t.belongs_to <%= belongs_to_association_symbols.join(", ") %>
-<% end %>
-<% for attribute in attributes -%>
+    create_table :<%= model.plural_name %>, :force => true do |t|
+
+<% unless model.belongs_to_associations.empty? -%>
+			t.belongs_to <%= model.belongs_to_associations.map{|x| ":#{x.name}"}.join(", ") %>
+<% end -%>
+
+<% for attribute in model.attributes -%>
       t.column :<%= attribute.name %>, :<%= attribute.type %>
 <% end -%>
+
       t.timestamps
     end
   end
 
   def self.down
-    drop_table :<%= table_name %>
+    drop_table :<%= model.plural_name %>
   end
 end

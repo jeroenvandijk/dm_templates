@@ -1,13 +1,13 @@
 <% 1.upto(number_of_entities) do |id| -%>
-<%= "#{file_name}_#{id}" %>:
-<% model.attributes_for(:mass_assignment).each do |attribute| -%>
+<%= "#{model.singular_name}_#{id}" %>:
+<% model.attributes_for(:form).each do |attribute| -%>
   <%= attribute.name %>: <%= attribute.default %>
 <% end -%>
 <% (model.collection_names).each do |child| -%>
   <%= "#{child}: " + (id..number_of_entities).map{|x| "#{child.singularize}_#{x}" }.join(", ")%>
 <% end -%>
-<% model.association_names(:belongs_to).each do |parent| -%>
-  <%= "#{parent}: #{parent}_#{id}" %>
+<% model.belongs_to_associations.each do |association| -%>
+  <%= "#{association.name}: #{association.name}_#{id}" %>
 <% end -%>
 
 <% end -%>

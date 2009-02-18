@@ -1,10 +1,10 @@
 class <%= migration_name %> < ActiveRecord::Migration
   def self.up
     create_table :<%= table_name %>, :force => true do |t|
-<% unless belongs_to_association_symbols.empty? -%>
-			t.belongs_to <%= belongs_to_association_symbols.join(", ") %>
+<% unless model.belongs_to_associations.empty? -%>
+			t.belongs_to <%= model.belongs_to_associations.map{|x| ":#{x}"}.join(", ") %>
 <% end %>
-<% for attribute in attributes -%>
+<% for attributes_for(:migration) in attributes -%>
       t.column :<%= attribute.name %>, :<%= attribute.type %>
 <% end -%>
       t.timestamps
