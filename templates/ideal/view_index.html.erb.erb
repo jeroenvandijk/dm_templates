@@ -1,5 +1,21 @@
 <%= model.page_title :index %>
 
-<%= model.render_partial("@#{model.plural_name}") %>
+<%% tabs_for(:<%= model.plural_name %>) do %>
 
-<%= model.link_to(:new, :template => :index) %>
+  <div class="listing" id="listing_of_<%= model.singular_name %>">
+    <div id="listing_headings">
+  <% model.attributes_for(:index).each do |attribute| -%>
+    	<div class="attribute_value format_<%= attribute.format %>">
+        <h3><%= attribute.display_name(:partial) %></h3> 
+    	</div>
+  <% end -%>
+    </div>
+  
+    <%= model.render_partial("@#{model.plural_name}") %>
+  </div>
+
+  <div class="links">
+    <%= model.link_to(:new, :template => :index) %>
+  </div>
+
+<%% end %>

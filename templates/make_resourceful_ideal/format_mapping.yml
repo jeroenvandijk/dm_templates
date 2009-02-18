@@ -4,7 +4,7 @@ email:
     valid: jeroen@noxa.nl
     invalid: jeroen_noxa.nl
   display:
-    default: "mail_to('{{object}}.{{attribute_name}}')"
+    default: "mail_to h({{object}}.{{attribute_name}})"
 
 name:
   native_type: string
@@ -12,7 +12,7 @@ name:
     valid: jeroen
     invalid: jeroen32
   display:
-    default: "link_to(h({{object}}.{{attribute_name}}), {{object}})"
+    default: "link_to h({{object}}.{{attribute_name}}), nested_object_path({{object}})" # Using make_resourceful object_path helper
     show: "{{object}}.{{attribute_name}}"
     
 url:
