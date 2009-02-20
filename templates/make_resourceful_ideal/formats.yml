@@ -1,0 +1,50 @@
+email:
+  native_type: string
+  examples:
+    valid: jeroen@noxa.nl
+    invalid: jeroen_noxa.nl
+  display:
+    default: "mail_to h({{field}})"
+
+name:
+  native_type: string
+  examples:
+    valid: jeroen
+    invalid: jeroen32
+  display:
+    default: "link_to h({{field}}), nested_object_path({{instance}})" # Using make_resourceful object_path helper
+    show: "{{field}}"
+    
+url:
+  native_type: string
+  examples:
+    valid: http://www.google.com
+    invalid: www.google
+  display:
+    default: "link_to h({{field}})"
+
+html:
+  native_type: text
+  examples:
+    valid: <html>hello</html>
+    invalid: <html>hello
+  display:
+    default: "{{field}}"
+    
+file_column:
+  native_type: string
+  examples:
+    valid: test.txt
+    invalid: test
+  display:
+    default: "{{field}}"
+  form_field: 'file_column_field "{{instance}}", "{{attribute_name}}"'
+  
+currency:
+  native_type: decimal
+  examples:
+    valid: 100.24
+    invalid: "test"
+  display:
+    default: "number_to_currency {{field}}"
+  
