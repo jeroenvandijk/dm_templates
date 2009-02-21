@@ -1,8 +1,8 @@
 email:
   native_type: string
   examples:
-    valid: jeroen@noxa.nl
-    invalid: jeroen_noxa.nl
+    valid: jeroen@jeevidee.nl
+    invalid: jeroen_jeevidee.nl
   display:
     default: "mail_to h({{field}})"
 
@@ -18,10 +18,18 @@ name:
 url:
   native_type: string
   examples:
-    valid: http://www.google.com
-    invalid: www.google
+    valid: http://www.jeevidee.nl
+    invalid: www.jeevidee
   display:
     default: "link_to h({{field}})"
+
+image_url:
+  native_type: string
+  examples:
+    valid: "http://rubyonrails.org/images/rails.png"
+    invalid: rails
+  display:
+    default: "image_tag {{field}}"
 
 html:
   native_type: text
@@ -47,4 +55,4 @@ currency:
     invalid: "test"
   display:
     default: "number_to_currency {{field}}"
-  
+
