@@ -1,9 +1,9 @@
 <%= model.define_model %>
 	## ASSOCIATIONS
-  <%#= model.define_associations %>
+  <%= model.add_associations %>
 
 	## RESTRICTIONS
-  <%# model.define_accessible_attributes %>
+  <%= model.define_accessible_attributes %>
 
   ## CONSTANTS
 
@@ -16,8 +16,8 @@
 	## NAMED_SCOPES
 
 	## PRESENCE VALIDATIONS
-  <%#= model.presence_validations %>
-
+  <%= model.presence_validations(16) %>
+                                
 	## ASSOCIATED VALIDATIONS
   <%#= model.association_validations %>
 
@@ -41,9 +41,9 @@
   def self.scope_by_params(params = {}, options = {})
     ## TODO replace this with a proper search generic find code here
 		scope = scoped({})
-<%# model.attribute_symbols.each do |field| -%>
-		scope = scope.scoped :conditions => { <%#= field %> => params[<%#= field %>] } if params[<%#= field %>]
-<%# end -%>
+<% model.attributes.each do |field| -%>
+		scope = scope.scoped :conditions => { :<%= field.name %> => params[:<%= field.name %>] } if params[:<%= field.name %>]
+<% end -%>
 		scope
 
 	end
