@@ -1,12 +1,11 @@
-class <%= class_name %> < ActiveRecord::Base
+<%= model.define_model %>
 	## ASSOCIATIONS
-<% supported_associations.each do |type| -%>
-<% eval("#{type}_associations_with_options").each do |name_with_options| -%>
-	<%= type + " " + name_with_options %>
-<% end %>
-<% end %>
+  <%= model.add_associations %>
+
 	## RESTRICTIONS
-	attr_accessible <%= attribute_symbols.join(",\n" + "\t" * 9) %> 
+  <%= model.define_accessible_attributes %>
+
+  ## CONSTANTS
 
 	## CALLBACKS
 
@@ -17,39 +16,37 @@ class <%= class_name %> < ActiveRecord::Base
 	## NAMED_SCOPES
 
 	## PRESENCE VALIDATIONS
-	validates_presence_of <%= (attribute_symbols - boolean_attribute_symbols).join(",\n" + "\t" * 12) %>
-<%#validates_presence_of <%= (all_field_names - boolean_attribute_symbols).join(",\n" + "\t" * 12) -%>
-
-<% unless boolean_attribute_symbols.empty? %>
-	with_options :minimum => 1 do |w|
-<% string_attribute_symbols.each do |attr| -%>
-		w.validates_length_of <%= attr %>
-<% end -%>
-	end
-<% end -%>
-	
-<% boolean_attribute_symbols.each do |attr| -%>
-	validates_inclusion_of <%= attr %>, in => [true, false] %>
-<% end -%>
-
+  <%= model.presence_validations(12) %>
+                                
 	## ASSOCIATED VALIDATIONS
-<% unless belongs_to_association_names.empty? -%>
-	<%# validates_associated <%= association_names.join(",\n" + "\t" * 12) %>
-<% end -%>
+  <%#= model.association_validations %>
 
 	## FORMAT VALIDATIONS
 	with_options :allow_nil => true, :allow_blank => true do |w|
-		# TODO add formatting validations
+		<%#= model.format_validations :indent => 2 %>
 	end
 	
 	## VIRTUAL ATTRIBUTES
 	
-	## NORMAL METHODS
-	def self.find_by_params(params = {})
+  ## CLASS METHODS
+	def self.find_by_params(params = {}, options = {})
+    scope = scope_by_params(params, options)
+    options[:paginate] ? scope.paginate(:all, page => params[:page]) : scope.find(:all)
+  end
+  
+  def self.count_by_params(params,options)
+    scope_by_params(params, options).count
+  end
+  
+  def self.scope_by_params(params = {}, options = {})
+    ## TODO replace this with a proper search generic find code here
 		scope = scoped({})
-<% attribute_symbols.each do |field| -%>
-		scope = scope.scoped :conditions => { <%= field %> => params[<%= field %>] } if params[<%= field %>]
+<% model.attributes.each do |field| -%>
+		scope = scope.scoped :conditions => { :<%= field.name %> => params[:<%= field.name %>] } if params[:<%= field.name %>]
 <% end -%>
-		scope.find(:all) ## TODO replace this with a proper search generic find code here
+		scope
+
 	end
+	
+	## NORMAL METHODS
 end

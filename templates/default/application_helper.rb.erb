@@ -1,0 +1,69 @@
+# Methods added to this helper will be available to all templates in the application.
+module ApplicationHelper
+  
+  def title_for(resource_name, action)
+    content_tag :h1, @page_title = translate_for("#{resource_name.to_s.singularize}.#{action}.title").humanize
+  end
+  
+  # Shows a div with an explanatory message when the resource is empty
+  def placeholder_for(resource, &block)
+    if current_objects.any?
+      yield
+    else
+      model_translations = translate_model(resource.to_s.singularize)
+      content = content_tag(:div, t(  "placeholder.empty_collection.#{resource}", 
+                                      model_translations.merge(:default => t( "placeholder.empty_collection.default", 
+                                                                              model_translations) ) ), :class => "placeholder" )
+                                                                              
+      concat(content, block.binding)
+    end
+  end
+  
+  # Not implemented
+  def tabs_for(*args)
+    yield
+  end
+  
+  # Return a hash with the singular and plural translation of model, in the form of :model and :models
+  def translate_model(_name)
+    name = _name.to_s
+
+    # Set the value for model, because it could be expected in the language file.
+    with_options :scope => "activerecord.models" do |w|
+      { 
+        :model  => w.translate( name, :count => 1),#, :default => name),
+        :models => w.translate( name, :count => 2)#, :default => name.pluralize).gsub(/\d+/, '').strip # last part is to remove unnecessary digits and spaces cause by count
+      }
+    end
+
+  end
+  
+  def translate_for(item, options = {})
+    # Extract model name by applying the pattern /word.word.word/
+    model_name, action = item.scan(/(\w+)\.(\w+)\.\w+/).flatten[0..1]
+
+    options.reverse_merge! translate_model(model_name)
+
+    # Find the translation and use the default when a translation does not exist.
+    default_item = item.gsub(model_name, 'resource_default')
+    default_item_with_default_action = default_item.gsub(action, 'action_default')
+    
+    # raise options.inspect
+    
+    with_options :scope => "actionview.actions" do |w|
+      default_item_default_action = w.t default_item_with_default_action, options
+      default_item = w.t default_item, options.reverse_merge(:default => default_item_default_action )
+    
+      w.t item, options.reverse_merge(:default => default_item)
+    end
+  end
+  
+  # Gives a (possibly different) translation for saving a new object or an existing object
+  def translate_save_for(object_name)
+    object_instance = instance_variable_get("@#{object_name}")
+    action = object_instance.new_record? ? "new" : "edit"
+    translate_for("#{object_name.to_s}.#{action}.save_button_name")
+  end
+  
+  
+end

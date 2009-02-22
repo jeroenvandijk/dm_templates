@@ -1,13 +1,12 @@
-<div id="<%= singular_name %>">
-<% for attribute in attributes_for__partial -%>
-	<p><%= attribute.column.human_name %>
-		<%%= <%= attribute.display(singular_name, :_partial) %> %>
-	</p>
+<div class="partial partial_for_<%= model.singular_name %> <%%= cycle('odd', 'even') %>">
+<% model.attributes_for(:index).each do |attribute| -%>
+	<div class="<%= attribute.name %>_field field_value format_<%= attribute.format %>">
+		<%= attribute.display(:partial) %> &nbsp;
+	</div>
 <% end -%>
-</div>
 
-<%%= link_to translate_for("<%= singular_name %>.show.link_to_edit"), <%= path_for(model_instance, :edit, :partial => true) %> %>
-|
-<%%= link_to translate_for("<%= singular_name %>.show.link_to_destroy"), <%= path_for(model_instance, :destroy, :partial => true) %>, :confirm => translate_for("<%= singular_name %>.show.destroy_confirmation"), :method => :delete %>
-|
-<%%= link_to translate_for("<%= singular_name %>.show.link_to_index"), <%= path_for(model_instance, :index) %> %>
+  <%= model.make_resourceful_link_to(:edit, :template => :partial) %>
+  <%= model.make_resourceful_link_to(:destroy, :template => :partial) %>
+  
+  <div style="clear: both"> </div>
+</div>

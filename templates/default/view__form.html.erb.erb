@@ -1,13 +1,8 @@
-<%%= error_messages_for :<%= singular_name %> %>
-
-<%% form_for <%= form_for_args %> do |f| %>
-<%- for attribute in attributes_for__form -%>
-	<p>
-		<%%= f.label :<%= attribute.name %> %>
-		<%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
-	</p>
-<% end -%>
-	<p>
-		<%%= f.submit translate_save(:<%= singular_name %>) %>
-	</p>
+<%= model.form_for %>
+  
+  <%= model.render_form_fields %>
+	
+	<div id="save_button">
+		<%= model.save_form_button %>
+	</div>
 <%% end %>

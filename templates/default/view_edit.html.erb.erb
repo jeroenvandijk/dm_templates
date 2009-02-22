@@ -1,7 +1,7 @@
-<h1><%%= translate_for "<%= singular_name %>.edit.title" %></h1>
+<%= model.page_title(:edit) %>
 
-<%%= render :partial => "form", :locals => {:<%= singular_name %> => @<%= singular_name %>} %>
+<%= model.render_form %>
 
-<%%= link_to translate_for("<%= singular_name %>.edit.link_to_show"), <%= path_for(model_instance, :show) %> %>
+<%= model.make_resourceful_link_to(:show, :template => :edit) %>
 |
-<%%= link_to translate_for("<%= singular_name %>.edit.link_to_index"), <%= path_for(model_instance, :index) %> %>
+<%= model.make_resourceful_link_to(:index, :template => :edit) %>
