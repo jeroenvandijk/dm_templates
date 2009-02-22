@@ -16,7 +16,7 @@
 	## NAMED_SCOPES
 
 	## PRESENCE VALIDATIONS
-  <%= model.presence_validations(16) %>
+  <%= model.presence_validations(12) %>
                                 
 	## ASSOCIATED VALIDATIONS
   <%#= model.association_validations %>
@@ -31,7 +31,7 @@
   ## CLASS METHODS
 	def self.find_by_params(params = {}, options = {})
     scope = scope_by_params(params, options)
-    options[:paginate] ? scope.paginate(:all, params[:page] || 1) : scope.find(:all)
+    options[:paginate] ? scope.paginate(:all, page => params[:page]) : scope.find(:all)
   end
   
   def self.count_by_params(params,options)

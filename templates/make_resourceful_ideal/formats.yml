@@ -19,7 +19,7 @@ url:
   native_type: string
   examples:
     valid: http://www.jeevidee.nl
-    invalid: www.jeevidee
+    invalid: www.jeevidee 
   display:
     default: "link_to h({{field}})"
 
