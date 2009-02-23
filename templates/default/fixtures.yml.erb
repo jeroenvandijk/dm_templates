@@ -4,7 +4,7 @@
   <%= attribute.name %>: <%= attribute.default %>
 <% end -%>
 <% model.habtm_associations.each do |child| -%>
-  <%= "#{child.pluralize}: " + (id..number_of_entities).map{|x| "#{child.singularize}_#{x}" }.join(", ") %>
+  <%= "#{child.name.pluralize}: " + (id..number_of_entities).map{|x| "#{child.name.singularize}_#{x}" }.join(", ") %>
 <% end -%>
 <% model.belongs_to_associations.each do |parent| -%>
   <%= "#{parent.name}: #{parent.name}_#{id % 3 + 1}" %>
