@@ -52,3 +52,69 @@ a:hover { color: #fff; background-color:#000; }
   list-style: square;
 }
 
+/* table layout exported from sass */
+.link_to_edit a {
+  background-image: url(/images/edit.png);
+  background-position: top left;
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+  width: 20px;
+  height: 20px;
+  display: block; }
+  .listing .link_to_edit a {
+    margin-left: 5px; }
+
+.link_to_destroy a {
+  background-image: url(/images/delete.png);
+  background-position: top left;
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+  width: 20px;
+  height: 20px;
+  display: block; }
+
+.link_to_new {
+  height: 30px; }
+  .link_to_new a {
+    background-image: url(/images/add.png);
+    background-position: top left;
+    background-repeat: no-repeat;
+    padding-left: 20px; }
+
+.field_value {
+  height: 100%;
+  border-left: 1px solid white; }
+
+.placeholder {
+  height: 200px; }
+
+.listing {
+  display: inline-block; }
+  .listing .odd {
+    background-color: #ccccff; }
+  .listing .even {
+    background-color: #eeeeee; }
+  .listing h3 {
+    font-size: 1em; }
+
+.partial {
+  border-bottom: 1px solid white; }
+
+.listing, .partial {
+  clear: both; }
+  .listing .field_value, .listing .field_label,   .partial .field_value, .partial .field_label {
+    float: left; }
+  .listing .link_to_edit, .listing .link_to_destroy,   .partial .link_to_edit, .partial .link_to_destroy {
+    float: left; }
+  .listing .format_string, .listing .format_name, .listing .format_url, .listing .format_text,   .partial .format_string, .partial .format_name, .partial .format_url, .partial .format_text {
+    width: 300px; }
+  .listing .format_integer, .listing .format_decimal, .listing .format_float,   .partial .format_integer, .partial .format_decimal, .partial .format_float {
+    width: 80px; }
+  .listing .format_datetime, .listing .format_date,   .partial .format_datetime, .partial .format_date {
+    width: 80px; }
+  .listing .format_file_column,   .partial .format_file_column {
+    width: 10px; }
+  .listing .format_boolean,   .partial .format_boolean {
+    width: 60px; }
+  .listing .format_html,   .partial .format_html {
+    width: 800px; }
