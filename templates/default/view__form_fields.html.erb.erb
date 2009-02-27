@@ -4,14 +4,9 @@
 
 <% model.attributes_for(:form).each do |attribute| -%>
   <div class="form_field">
-	  <%= attribute.form_label %>
-    <%= attribute.form_field %>
+    <%= attribute.form_label_and_field %>
   </div>
   
 <% end -%>
-<%- model.associations_for(:form).each do |association| -%>
-  <div id="fields_for_<%= association.name %>">
-    <%= model.render_fields_for association.name %>
-  </div>
-<% end -%>
+
 </div>
