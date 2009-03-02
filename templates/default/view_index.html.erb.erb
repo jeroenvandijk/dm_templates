@@ -13,7 +13,7 @@
         <div id="listing_headings">
 <% model.attributes_for(:index).each do |attribute| -%>
           <div class="<%= attribute.name %>_label field_label format_<%= attribute.format %>">
-            <h3><%%= link_to_ordered_index_on "<%= attribute.name %>", <%= attribute.display_name(:partial, :no_wrapping => true) %> %></h3> 
+            <h3><%%= <%= (attribute.real? ? %{link_to_ordered_index_on "#{attribute.name}", } : "" ) %><%= attribute.display_name(:partial, :no_wrapping => true) %> %></h3> 
           </div>
 <% end -%>
         </div>
