@@ -1,0 +1,30 @@
+<div id="index">
+	<%= model.page_title :index %>
+
+	<%% tabs_for(:<%= model.plural_name %>) do %>
+
+		<%% placeholder_for :<%= model.plural_name %> do %>
+		
+			<%= model.make_resourceful_link_to(:new, :template => :index) %>
+
+			<%= model.will_paginate %>
+		
+			<table class="listing" id="listing_of_<%= model.singular_name %>">
+				<tr id="listing_headings">
+<% model.attributes_for(:index).each do |attribute| -%>
+					<th class="<%= attribute.name %>_label field_label format_<%= attribute.format %>">
+						<%%= <%= (attribute.real? ? %{link_to_ordered_index_on "#{attribute.name}", } : "" ) %><%= attribute.display_name(:partial, :no_wrapping => true) %> %>
+					</th>
+<% end -%>
+				</tr>
+				<%= model.render_partial("@#{model.plural_name}") %>
+			
+			</table>
+		<%% end %>
+
+		<%= model.will_paginate %>
+
+		<%= model.make_resourceful_link_to(:new, :template => :index) %>
+
+	<%% end %>
+</div>

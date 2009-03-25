@@ -1,0 +1,6 @@
+<div id="edit">
+	<%= model.page_title(:edit) %>
+<%% tabs_for(:<%= model.singular_name %>) do %>
+	<%= model.render_form %>
+<%% end %>
+</div>

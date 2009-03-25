@@ -1,0 +1,10 @@
+<%= model.form_for %>
+	<fieldset>
+		<%= model.render_form_fields %>
+	
+		<div id="save_button">
+			<%= model.save_form_button %>
+		</div>
+		<%= model.make_resourceful_link_to(:back, :template => :form) %>
+	</fieldset>
+<%% end %>

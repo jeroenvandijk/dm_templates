@@ -1,0 +1,15 @@
+<tr class="partial <%%= cycle('odd', 'even') %>">
+<% model.attributes_for(:index).each_with_index do |attribute, index| -%>
+	<td class="<%= attribute.name %>_field format_<%= attribute.format %>">
+		<% if index == 0 %>
+		  <%%= link_to <%= attribute.display(:partial, :no_wrapping => true) %>, nested_object_path(<%= model.singular_name %>) %>
+		<% else %>
+		  <%= attribute.display(:partial) %>
+		<% end %>
+	</td>
+<% end -%>
+	<td class="tools">
+		<%= model.make_resourceful_link_to(:destroy, :template => :partial) %>
+		<%= model.make_resourceful_link_to(:edit, :template => :partial) %>
+	</td>
+</tr>

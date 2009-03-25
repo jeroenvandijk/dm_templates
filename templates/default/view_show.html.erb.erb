@@ -1,20 +1,20 @@
 <div id="show">
   <%= model.page_title(:show) %>
 
-  <fieldset>
-
-    <div class="<%= model.singular_name %>">
+  <div class="<%= model.singular_name %>">
 <% model.attributes_for(:show).each do |attribute| %>
-      <div class="attribute">
-  	    <div class="field_name format_<%= attribute.format %>"><%= attribute.display_name(:show) %></div>
-  	    <div class="field_value format_<%= attribute.format %>"><%= attribute.display(:show) %></div>
-  	  </div>
+    <div class="attribute">
+	    <div class="field_name format_<%= attribute.format %>"><%= attribute.display_name(:show) %></div>
+	    <div class="field_value format_<%= attribute.format %>"><%= attribute.display(:show) %></div>
+	  </div>
 <% end -%>
 
-    </div>
+<% model.associations_for(:show).each do |association| -%>
+    <%= model.render_partial("@#{model.singular_name}.#{association.name}") %>
+<% end -%>
+  </div>
 
-    <%= model.make_resourceful_link_to(:edit, :template => :show) %>
-    <%= model.make_resourceful_link_to(:destroy, :template => :show) %>
-    <%= model.make_resourceful_link_to(:index, :template => :show) %>
-  </fieldset>
+  <%= model.make_resourceful_link_to(:edit, :template => :show) %>
+  <%= model.make_resourceful_link_to(:destroy, :template => :show) %>
+  <%= model.make_resourceful_link_to(:index, :template => :show) %>
 </div>

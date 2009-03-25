@@ -12,8 +12,15 @@ name:
     valid: jeroen
     invalid: jeroen32
   display:
-    default: "link_to h({{field}}), nested_object_path({{instance}})" # Using make_resourceful object_path helper
+    default: "{{field}}"
     show: "{{field}}"
+
+rich_text:
+  native_type: text
+  display:
+    default: "{{field}}"
+  form: 
+    field: '{{form_reference}}.text_area :{{attribute_name}}, :class => "mceEditor", :style => "width:450px; height:120px;" %><% use_tinymce'
     
 url:
   native_type: string
@@ -21,7 +28,7 @@ url:
     valid: http://www.jeevidee.nl
     invalid: www.jeevidee 
   display:
-    default: "link_to h({{field}})"
+    default: "link_to h({{field}}), h({{field}})"
 
 image_url:
   native_type: string
@@ -39,14 +46,15 @@ html:
   display:
     default: "{{field}}"
     
-file_column:
+image:
   native_type: string
   examples:
     valid: test.txt
     invalid: test
   display:
-    default: "{{field}}"
-  form_field: 'file_column_field "{{instance}}", "{{attribute_name}}"'
+    default: "image_tag url_for_file_column('{{object_name}}', '{{attribute_name}}')"
+  form: 
+    field: 'file_column_field "{{object_name}}", "{{attribute_name}}"'
   
 currency:
   native_type: decimal
@@ -56,3 +64,14 @@ currency:
   display:
     default: "number_to_currency {{field}}"
 
+boolean:
+  native_type: boolean
+  display:
+    default: "{{field}}"
+  form: 
+    label_and_field: '{{form_reference}}.label_and_yes_or_no :{{attribute_name}}'
+
+string_collection:
+  native_type: array
+  display:
+    default: "{{instance}}.map(&:{{attribute_name}}).to_sentence"

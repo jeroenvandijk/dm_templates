@@ -1,0 +1,173 @@
+!odd = #CCCCFF
+!even = #EEEEEE
+!left_margin = 15px
+// LINKS
+
+=cycle_colors(!odd, !even)
+	.odd
+		:background-color = !odd
+	.even
+		:background-color = !even
+
+=replace_text_with_image(!image, !width)
+	+bg(!image)
+	:width = !width
+
+=add_button_at_end(!image, !extra_width, !position = "top right" )
+	+bg(!image, !position)
+	:padding-right = !extra_width
+
+=add_button_in_front(!image, !width)
+	+bg(!image)
+	:padding-left = !width
+
+=replace_text_with_image(!image, !width, !height)
+	+bg(!image)
+	:text-indent -9999px
+	:width = !width
+	:height = !height
+	:display block
+
+=change_into_small_button(!image)
+	+replace_text_with_image(!image, 20px, 20px)
+
+!table_border = 1px solid white
+
+
+	
+// --- Styles for the index ---
+
+.placeholder
+	:height 200px
+
+.link_to_new 
+	:height 30px
+	a
+		+add_button_in_front("add.png", 20px)
+
+.listing
+	+cycle_colors(!odd, !even)
+	:display inline-block
+	h3
+		:font-size 1em
+
+
+#show
+	.link_to_edit
+		// Somewhite space between the last element and the links
+		:padding-top 10px  
+		:display inline-block
+		&:after
+			:content " | "
+
+	.link_to_destroy
+		:display inline
+		&:after
+			:content " | "
+			
+	.field_name
+		:font-weight 200
+		
+	.field_value
+		:padding-bottom 10px
+	
+	// When partial is rendered in show it should look differently
+	.partial
+		.link_to_destroy, .link_to_edit
+			:display none
+		.field_value
+			:padding-bottom 0px
+			&:before
+				:content "- "
+
+#index
+	.partial
+		:border-bottom = !table_border
+
+		.link_to_edit a
+			+change_into_small_button("edit.png")
+			.listing &
+				:margin-left 5px
+
+		.link_to_destroy a
+			+change_into_small_button("delete.png")
+
+	.field_label
+		:border
+			:left = !table_border
+		.order_1
+			+add_button_at_end("arrow_down.gif", 20px, "center right")
+
+		.order_0
+			+add_button_at_end("arrow_up.gif", 20px, "center right")
+			
+	.field_value
+		:height 100%
+		:border
+			:left = !table_border
+
+	.listing, .partial
+		:clear both
+
+	.field_value, .field_label
+		:float left
+		
+	.link_to_edit, .link_to_destroy
+		:float right
+	.link_to_edit	
+		:padding-left 10px 
+
+	//formats
+	.format_string, .format_name, .format_url, .format_text
+		:width 300px
+	.format_integer, .format_decimal, .format_float, .format_currency
+		:width 100px
+	.format_datetime, .format_date
+		:width 100px
+	.format_file_column
+		:width 100px
+	.format_boolean
+		:width 100px 
+	.format_rich_text
+		:width 800px
+
+h1
+	:margin-left = !left_margin
+
+fieldset
+	:width 700px
+	:background-color #EEEEEE
+	:margin-left = !left_margin
+	
+	.link_to_index, #save_button
+		:display inline-block
+
+#save_button
+	:padding-top 10px
+
+.form_field
+	:clear both
+	:padding 5px 0
+	label
+		:display block
+	.yes_or_no
+		label, input
+			:display inline-block
+			:width 30px
+
+.collection
+	:padding-bottom 10px
+
+
+.check_boxes
+	.member
+		:display inline-block
+		label
+			:display inline-block
+
+
+// SORTING
+
+
+//SHOW 
+#show
